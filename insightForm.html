@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Insight</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Page styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #89CFF0, #23237d);
+            margin: 0;
+            padding: 20px;
+            color: #ffffff;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+        }
+        .form-container h2 {
+            color: #191970;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #191970;
+            text-align: left;
+        }
+        .form-control {
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-control:focus {
+            border-color: #89CFF0;
+            box-shadow: 0 0 8px rgba(137, 207, 240, 0.7);
+        }
+        .rating-range-label {
+            font-size: 1rem;
+            color: #191970;
+            margin-bottom: -10px;
+            font-weight: bold;
+        }
+        .submit-btn {
+            background-color: #89CFF0;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 10px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #1848a0;
+        }
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 300px;
+            display: none;
+        }
+        .alert .alert-heading {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        /* Custom spacing and design tweaks */
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Form Container -->
+<div class="form-container">
+    <h2>Add Your Insight</h2>
+    <form id="addInsightForm">
+        <!-- Name input -->
+        <div class="mb-4">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+        </div>
+        <!-- Course input -->
+        <div class="mb-4">
+            <label for="course" class="form-label">Course</label>
+            <input type="text" class="form-control" id="course" placeholder="Enter course name" required>
+        </div>
+        <!-- Comment input -->
+        <div class="mb-4">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea class="form-control" id="comment" rows="3" placeholder="Share your thoughts on the instructor" required></textarea>
+        </div>
+        <!-- Rating input (range slider) -->
+        <div class="mb-4">
+            <label for="rating" class="rating-range-label">Rating (1 - 5):</label>
+            <input type="range" class="form-range" min="1" max="5" id="rating" step="1" required>
+            <div class="d-flex justify-content-between">
+                <span>1 (Poor)</span>
+                <span>5 (Very Good)</span>
+            </div>
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="btn submit-btn">Submit</button>
+    </form>
+</div>
+
+<!-- Success and Error Messages -->
+<div id="successMessage" class="alert alert-success">
+    <h4 class="alert-heading">Success!</h4>
+    Insight successfully added!
+</div>
+<div id="errorMessage" class="alert alert-danger">
+    <h4 class="alert-heading">Error!</h4>
+    Please try again.
+</div>
+
+<!-- Bootstrap JS and Custom JS for Form Handling -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('addInsightForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Simulating a form submission for success or error
+        const isSuccess = Math.random() > 0.5; // 50/50 chance for success or error
+
+        if (isSuccess) {
+            showPopup('successMessage');
+        } else {
+            showPopup('errorMessage');
+        }
+    });
+
+    function showPopup(elementId) {
+        const messageElement = document.getElementById(elementId);
+        messageElement.style.display = 'block';
+
+        // Hide message after 3 seconds
+        setTimeout(() => {
+            messageElement.style.display = 'none';
+        }, 3000);
+    }
+</script>
+</body>
+</html>
